@@ -1,4 +1,12 @@
-from pyspark.sql.functions import *
+from pyspark.sql.functions import (
+    col,
+    when,
+    coalesce,
+    try_to_timestamp,
+    date_add,
+    expr,
+    lit
+)
 
 def convert_mixed_date(df, column_name):
 
@@ -9,12 +17,12 @@ def convert_mixed_date(df, column_name):
             expr(f"date_add('1899-12-30', CAST({column_name} AS INT))")
         ).otherwise(
             coalesce(
-                to_timestamp(col(column_name), "yyyy-MM-dd HH:mm:ss").cast("date"),
-                to_timestamp(col(column_name), "yyyy-MM-dd").cast("date"),
-                to_timestamp(col(column_name), "M/d/yyyy").cast("date"),
-                to_timestamp(col(column_name), "MM/dd/yyyy").cast("date"),
-                to_timestamp(col(column_name), "d MMM yyyy").cast("date"),
-                to_timestamp(col(column_name), "d-MMM-yy").cast("date")
+                try_to_timestamp(col(column_name), lit("yyyy-MM-dd HH:mm:ss")).cast("date"),
+                try_to_timestamp(col(column_name), lit("yyyy-MM-dd")).cast("date"),
+                try_to_timestamp(col(column_name), lit("M/d/yyyy")).cast("date"),
+                try_to_timestamp(col(column_name), lit("MM/dd/yyyy")).cast("date"),
+                try_to_timestamp(col(column_name), lit("d MMM yyyy")).cast("date"),
+                try_to_timestamp(col(column_name), lit("d-MMM-yy")).cast("date")
             )
         )
     )
