@@ -17,8 +17,6 @@ def null_summary(df):
     Returns null count for every column.
     """
     return df.select([
-        count(
-            when(col(c).isNull(), c)
-        ).alias(c)
+        count(when(col(c).isNull(), c)).alias(c)
         for c in df.columns
     ])
