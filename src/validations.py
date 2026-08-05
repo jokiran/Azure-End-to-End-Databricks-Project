@@ -13,10 +13,14 @@ def duplicate_check(df, column_name):
 
 
 def null_summary(df):
-    """
-    Returns null count for every column.
-    """
-    return df.select([
-        count(when(col(c).isNull(), c)).alias(c)
-        for c in df.columns
-    ])
+
+    exprs = []
+
+    for c in df.columns:
+        exprs.append(
+            count(
+                when(col(c).isNull(), c)
+            ).alias(c)
+        )
+
+    return df.select(exprs)
