@@ -17,3 +17,11 @@ LANDING_PATH = "/Volumes/databricks_project1/bronze/landing_volume"
 
 EMPLOYEE_FILE = f"{LANDING_PATH}/Employee_Payroll.xlsx"
 LABOR_FILE = f"{LANDING_PATH}/Labor_Position.xlsx"
+
+
+# Gold Tables
+
+DIM_FACILITY_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.dim_facility"
+DIM_LABOR_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.dim_labor_position"
+DIM_EMPLOYEE_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.dim_employee"
+FACT_EMPLOYEE_PAYROLL_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.fact_employee_payroll"
