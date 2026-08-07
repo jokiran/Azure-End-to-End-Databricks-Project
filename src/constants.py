@@ -19,13 +19,3 @@ EMPLOYEE_FILE = f"{LANDING_PATH}/Employee_Payroll.xlsx"
 LABOR_FILE = f"{LANDING_PATH}/Labor_Position.xlsx"
 
 
-# Gold Tables
-
-FACILITY_GOLD_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.dim_facility"
-
-LABOR_GOLD_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.dim_labor_position"
-
-EMPLOYEE_GOLD_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.dim_employee"
-
-FACT_GOLD_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.fact_employee_payroll"
-
