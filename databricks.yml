@@ -1,0 +1,43 @@
+# This is a Declarative Automation Bundle definition for Azure_End_to_End_Databricks_Project.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+bundle:
+  name: Azure_End_to_End_Databricks_Project
+  uuid: 484d0fb4-d68a-4505-842b-b457b4f75ca1
+
+include:
+  - resources/*.yml
+
+# Variable declarations. These variables are assigned in the dev/prod targets below.
+variables:
+  catalog:
+    description: The catalog to use
+  schema:
+    description: The schema to use
+
+targets:
+  dev:
+    # The default target uses 'mode: development' to create a development copy.
+    # - Deployed resources get prefixed with '[dev my_user_name]'
+    # - Any job schedules and triggers are paused by default.
+    # See also https://docs.databricks.com/dev-tools/bundles/deployment-modes.html.
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-7405608956873008.8.azuredatabricks.net
+    variables:
+      catalog: databricks_project1
+      schema: dev
+    presets:
+      artifacts_dynamic_version: true
+  prod:
+    mode: production
+    workspace:
+      host: https://adb-7405608956873008.8.azuredatabricks.net
+      # We explicitly deploy to /Workspace/Users/kiranpmane@outlook.com to make sure we only have a single copy.
+      root_path: /Workspace/Users/kiranpmane@outlook.com/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: databricks_project1
+      schema: prod
+    permissions:
+      - user_name: kiranpmane@outlook.com
+        level: CAN_MANAGE

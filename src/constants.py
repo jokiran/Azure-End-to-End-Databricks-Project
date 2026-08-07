@@ -21,7 +21,11 @@ LABOR_FILE = f"{LANDING_PATH}/Labor_Position.xlsx"
 
 # Gold Tables
 
-DIM_FACILITY_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.dim_facility"
-DIM_LABOR_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.dim_labor_position"
-DIM_EMPLOYEE_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.dim_employee"
-FACT_EMPLOYEE_PAYROLL_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.fact_employee_payroll"
+FACILITY_GOLD_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.dim_facility"
+
+LABOR_GOLD_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.dim_labor_position"
+
+EMPLOYEE_GOLD_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.dim_employee"
+
+FACT_GOLD_TABLE = f"{CATALOG_NAME}.{GOLD_SCHEMA}.fact_employee_payroll"
+

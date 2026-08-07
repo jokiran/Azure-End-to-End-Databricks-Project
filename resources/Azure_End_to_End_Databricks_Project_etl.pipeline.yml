@@ -1,0 +1,19 @@
+# The main pipeline for Azure_End_to_End_Databricks_Project
+
+resources:
+  pipelines:
+    Azure_End_to_End_Databricks_Project_etl:
+      name: Azure_End_to_End_Databricks_Project_etl
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+      root_path: "../src/Azure_End_to_End_Databricks_Project_etl"
+
+      libraries:
+        - glob:
+            include: ../src/Azure_End_to_End_Databricks_Project_etl/transformations/**
+
+      environment:
+        dependencies:
+          # We include every dependency defined by pyproject.toml by defining an editable environment
+          # that points to the folder where pyproject.toml is deployed.
+          - --editable ${workspace.file_path}
